@@ -7,7 +7,7 @@ dcled_ruby is a driver for the Dream Cheeky LED Message Board (http://www.dreamc
 
 Why
 ==========
-If you only want to run your device on a Mac stop reading and type "brew install dcled". Jeff Jahr has made a great driver (http://www.last-outpost.com/~malakai/dcled/) for this device and if your using Mac I recommend you give it a go. However, Jeff's driver requires the libhid library, which is no longer maintained. As such you will not be able to compile his driver on Debian based systems.
+If you only want to run your device on a Mac stop reading and type "brew install dcled". Jeff Jahr has made a great driver (http://www.last-outpost.com/~malakai/dcled/) for this device and if you're using Mac I recommend you give it a go. However, Jeff's driver requires the libhid library, which is no longer maintained. As such you will not be able to compile his driver on Debian based systems.
 
 I bought my device to work as an output for Raspberry Pi. As no drivers currently worked in linux I thought I'd give it a go. I wrote it in Ruby, firstly because that's my language of choice and secondly there aren't many examples of libusb in Ruby on GitHub. As there are loads of libusb wrappers (http://www.libusb.org/) this could easily be ported to another language. 
 
