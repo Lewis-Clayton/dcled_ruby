@@ -32,7 +32,7 @@ This has not been tested thoughly so if you have any issues let me know dcled_ru
 Fonts are curently very limited the current version only uses capitalised leters, numbers and a select few non-aphanumeric characters. In time this will grow. Feel free to contribute :)
 
 This is an example of an F. 0 = on. Array 1 is always 1 and the last element of the array is always 1. Fonts work best as 7x5.
-
+:
   f = {1 => [1,1,1,1,1,1,1,1],
        2 => [0,0,0,0,0,0,0,1],
        3 => [0,1,1,0,1,1,1,1],
