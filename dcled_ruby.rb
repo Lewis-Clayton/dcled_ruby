@@ -36,6 +36,9 @@ def initialise
   usb = LIBUSB::Context.new
   device = usb.devices(:idVendor => 0x1d34, :idProduct => 0x0013).first
   @led = device.open
+  if @led.kernel_driver_active?(0)
+    @led.detach_kernel_driver(0)
+  end
 end
 
 def format_packet(row, first_segment_row_1, second_segment_row_1, third_segment_row_1, first_segment_row_2, second_segment_row_2, third_segment_row_2 )

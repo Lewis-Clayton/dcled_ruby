@@ -23,7 +23,16 @@ or
 
 	$ ruby dcled_ruby.rb -f message.txt
 
-With HID USB devices the kernel can tie up the device. Automated detaching of the device from the kernel will come in the next version. In the mean time try running it as sudo.
+In Linux you may have to run this script as root. This is due to permissions assigned to the device. If you are not happy running this as root (and you shouldn't be) find out the bus and device number of the message board and then chomd it. You can identify it with "1d34:0013".
+
+	$ lsusb
+	…
+	…
+	Bus 003 Device 003: ID 1d34:0013 
+
+	$ chmod 777 /dev/bus/usb/003/003
+
+Unfortunately you'll have to do this every time the you unplug it. The other option is to change group permissions.
 
 When
 ==========
