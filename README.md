@@ -9,11 +9,13 @@ Why
 ==========
 If you only want to run your device on a Mac stop reading and type "brew install dcled". Jeff Jahr has made a great driver (http://www.last-outpost.com/~malakai/dcled/) for this device and if you're using Mac I recommend you give it a go. However, Jeff's driver requires the libhid library, which is no longer maintained. As such you will not be able to compile his driver on Debian based systems.
 
-I bought my device to work as an output for Raspberry Pi. As no drivers currently worked in linux I thought I'd give it a go. I wrote it in Ruby, firstly because that's my language of choice and secondly there aren't many examples of libusb in Ruby on GitHub. As there are loads of libusb wrappers (http://www.libusb.org/) this could easily be ported to another language. 
+I bought my device to work as an output for Raspberry Pi. As no drivers currently worked in linux I thought I'd give it a go. I wrote it in Ruby, firstly because that's my language of choice and secondly there aren't many examples of libusb in Ruby on GitHub. As there are loads of libusb wrappers (http://www.libusb.org/) this could easily be ported to another language.
 
 How
 ==========
 This should work with Ruby 1.9.2:
+
+	$ sudo apt-get install libusb-1.0-0-dev
 
 	$ gem install libusb
 
@@ -28,7 +30,7 @@ In Linux you may have to run this script as root. This is due to permissions ass
 	$ lsusb
 	…
 	…
-	Bus 003 Device 003: ID 1d34:0013 
+	Bus 003 Device 003: ID 1d34:0013
 
 	$ chmod 777 /dev/bus/usb/003/003
 
