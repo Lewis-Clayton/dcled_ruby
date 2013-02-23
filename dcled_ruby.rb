@@ -551,6 +551,7 @@ def fonts(letter)
   return seven if letter == "7"
   return eight if letter == "8"
   return nine if letter == "9"
+  return zero if letter == "0"
   return stop if letter == "."
   return comma if letter == ","
   return speech_open if letter == '"'
