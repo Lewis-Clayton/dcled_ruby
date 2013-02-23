@@ -6,7 +6,7 @@ BRIGHTNESS = 2
 def main()
   rescue_this { initialise }
   if ARGV[0] == "-m"
-    "#{ARGV[[1..-1]]}".split('').each {|letter| fonts(letter).each_value {|v| to_screen( v[0],v[1],v[2],v[3],v[4],v[5],v[6],v[7] ) }}
+    ARGV[1..-1].join(" ").split('').each {|letter| fonts(letter).each_value {|v| to_screen( v[0],v[1],v[2],v[3],v[4],v[5],v[6],v[7] ) }}
     clear_screen
   elsif ARGV[0] == "-f"
     filename = "#{PATH}/#{ARGV[1]}"
