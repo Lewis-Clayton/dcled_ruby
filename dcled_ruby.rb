@@ -5,11 +5,13 @@ BRIGHTNESS = 2
 
 def main()
   rescue_this { initialise }
-  if ARGV[0] == "-m"
-    ARGV[1..-1].join(" ").split('').each {|letter| fonts(letter).each_value {|v| to_screen( v[0],v[1],v[2],v[3],v[4],v[5],v[6],v[7] ) }}
+  option = ARGV.shift
+  input = ARGF.read
+  if option == "-m"
+    input.split('').each {|letter| fonts(letter).each_value {|v| to_screen( v[0],v[1],v[2],v[3],v[4],v[5],v[6],v[7] ) }}
     clear_screen
-  elsif ARGV[0] == "-f"
-    filename = "#{PATH}/#{ARGV[1]}"
+  elsif option == "-f"
+    filename = "#{PATH}/#{input}"
     message_array = IO.readlines(filename)
     message_array.join.split('').each {|letter| fonts(letter).each_value {|v| to_screen( v[0],v[1],v[2],v[3],v[4],v[5],v[6],v[7] ) }}
     clear_screen
