@@ -2,23 +2,26 @@ require 'libusb'
 
 PATH = File.expand_path(File.dirname(__FILE__))
 BRIGHTNESS = 2
+USAGE = "Usage:
+          ruby dcled_ruby.rb -m 'message here'
+          ruby dcled_ruby.rb -f message.txt\n"
 
 def main()
   rescue_this { initialise }
   option = ARGV.shift
-  input = ARGF.read
-  if option == "-m"
+  case option
+  when "-m"
+    input = ARGV.first ? ARGV.join(' ') : $stdin.read
     input.split('').each {|letter| fonts(letter).each_value {|v| to_screen( v[0],v[1],v[2],v[3],v[4],v[5],v[6],v[7] ) }}
     clear_screen
-  elsif option == "-f"
+  when "-f"
+    input = ARGV.first ? ARGV.join(' ') : $stdin.read
     filename = "#{PATH}/#{input}"
     message_array = IO.readlines(filename)
     message_array.join.split('').each {|letter| fonts(letter).each_value {|v| to_screen( v[0],v[1],v[2],v[3],v[4],v[5],v[6],v[7] ) }}
     clear_screen
   else
-    puts "Usage: \n
-          ruby dcled_ruby.rb -m 'message here' \n
-          ruby dcled_ruby.rb -f message.txt \n"
+    puts USAGE
   end
 end
 
@@ -72,7 +75,6 @@ def clear_screen
 end
 
 def to_screen(row1_new, row2_new, row3_new, row4_new, row5_new, row6_new, row7_new, row8_new)
-
   @row1 ||= Array.new(24, 1)
   @row2 ||= Array.new(24, 1)
   @row3 ||= Array.new(24, 1)
@@ -84,35 +86,27 @@ def to_screen(row1_new, row2_new, row3_new, row4_new, row5_new, row6_new, row7_n
 
   @row1.unshift(row1_new)
   @row1.pop
-  puts "#{@row1}"
 
   @row2.unshift(row2_new)
   @row2.pop
-  puts "#{@row2}"
 
   @row3.unshift(row3_new)
   @row3.pop
-  puts "#{@row3}"
 
   @row4.unshift(row4_new)
   @row4.pop
-  puts "#{@row4}"
 
   @row5.unshift(row5_new)
   @row5.pop
-  puts "#{@row5}"
 
   @row6.unshift(row6_new)
   @row6.pop
-  puts "#{@row6}"
 
   @row7.unshift(row7_new)
   @row7.pop
-  puts "#{@row7}"
 
   @row8.unshift(row8_new)
   @row8.pop
-  puts "#{@row8}"
 
   format_packet(0, @row1.slice(16,8).join, @row1.slice(8,8).join, @row1.slice(0,8).join, @row2.slice(16,8).join, @row2.slice(8,8).join, @row2.slice(0,8).join)
   format_packet(2, @row3.slice(16,8).join, @row3.slice(8,8).join, @row3.slice(0,8).join, @row4.slice(16,8).join, @row4.slice(8,8).join, @row4.slice(0,8).join)
@@ -518,63 +512,65 @@ def fonts(letter)
            6 => [1,1,1,1,1,1,1,1]
            }
 
-  return a if letter == "a"
-  return b if letter == "b"
-  return c if letter == "c"
-  return d if letter == "d"
-  return e if letter == "e"
-  return f if letter == "f"
-  return g if letter == "g"
-  return h if letter == "h"
-  return i if letter == "i"
-  return j if letter == "j"
-  return k if letter == "k"
-  return l if letter == "l"
-  return m if letter == "m"
-  return n if letter == "n"
-  return o if letter == "o"
-  return p if letter == "p"
-  return q if letter == "q"
-  return r if letter == "r"
-  return s if letter == "s"
-  return t if letter == "t"
-  return u if letter == "u"
-  return v if letter == "v"
-  return w if letter == "w"
-  return x if letter == "x"
-  return y if letter == "y"
-  return z if letter == "z"
-  return one if letter == "1"
-  return two if letter == "2"
-  return three if letter == "3"
-  return four if letter == "4"
-  return five if letter == "5"
-  return six if letter == "6"
-  return seven if letter == "7"
-  return eight if letter == "8"
-  return nine if letter == "9"
-  return zero if letter == "0"
-  return stop if letter == "."
-  return comma if letter == ","
-  return speech_open if letter == '"'
-  return speech_closed if letter == '"'
-  return single_speech_open if letter == "'"
-  return single_speech_closed if letter =="'"
-  return question_mark if letter == "?"
-  return exclamation_mark if letter == "!"
-  return at if letter == "@"
-  return underscore if letter == "_"
-  return star if letter == "*"
-  return hash if letter == "#"
-  return dollar if letter == "$"
-  return percent if letter == "%"
-  return ampersand if letter == "&"
-  return bracket_open if letter == "("
-  return bracket_closed if letter == ")"
-  return plus if letter == "+"
-  return minus if letter == "-"
-  return space if letter == " "
-  return space
+  case letter
+  when "a" then return a
+  when "b" then return b
+  when "c" then return c
+  when "d" then return d
+  when "e" then return e
+  when "f" then return f
+  when "g" then return g
+  when "h" then return h
+  when "i" then return i
+  when "j" then return j
+  when "k" then return k
+  when "l" then return l
+  when "m" then return m
+  when "n" then return n
+  when "o" then return o
+  when "p" then return p
+  when "q" then return q
+  when "r" then return r
+  when "s" then return s
+  when "t" then return t
+  when "u" then return u
+  when "v" then return v
+  when "w" then return w
+  when "x" then return x
+  when "y" then return y
+  when "z" then return z
+  when "1" then return one
+  when "2" then return two
+  when "3" then return three
+  when "4" then return four
+  when "5" then return five
+  when "6" then return six
+  when "7" then return seven
+  when "8" then return eight
+  when "9" then return nine
+  when "0" then return zero
+  when "." then return stop
+  when "," then return comma
+  when '"' then return speech_open
+  when '"' then return speech_closed
+  when "'" then return single_speech_open
+  when "'" then return single_speech_closed
+  when "?" then return question_mark
+  when "!" then return exclamation_mark
+  when "@" then return at
+  when "_" then return underscore
+  when "*" then return star
+  when "#" then return hash
+  when "$" then return dollar
+  when "%" then return percent
+  when "&" then return ampersand
+  when "(" then return bracket_open
+  when ")" then return bracket_closed
+  when "+" then return plus
+  when "-" then return minus
+  when " " then return space
+  else return space
+  end
 end
 
 main()
