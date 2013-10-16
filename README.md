@@ -3,7 +3,7 @@ dcled_ruby
 
 What
 ==========
-dcled_ruby is a driver for the Dream Cheeky LED Message Board (http://www.amazon.com/mn/search/?_encoding=UTF8&camp=1789&creative=390957&field-keywords=dream%20cheeky%20led&linkCode=ur2&tag=mossycleftcom-20).
+dcled_ruby is a driver for the Dream Cheeky LED Message Board (http://www.amazon.com/mn/search/?_encoding=UTF8&field-keywords=dream%20cheeky%20led&linkCode=ur2&tag=mossycleftcom-20).
 
 Why
 ==========
