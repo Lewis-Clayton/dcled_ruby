@@ -3,7 +3,7 @@ dcled_ruby
 
 What
 ==========
-dcled_ruby is a driver for the Dream Cheeky LED Message Board (http://www.dreamcheeky.com/led-message-board).
+dcled_ruby is a driver for the Dream Cheeky LED Message Board (http://www.amazon.com/mn/search/?_encoding=UTF8&camp=1789&creative=390957&field-keywords=dream%20cheeky%20led&linkCode=ur2&tag=mossycleftcom-20).
 
 Why
 ==========
@@ -40,7 +40,7 @@ When
 ==========
 This has not been tested thoughly so if you have any issues let me know dcled_ruby@l.ew.is
 
-Fonts are curently very limited the current version only uses capitalised leters, numbers and a select few non-aphanumeric characters. In time this will grow. Feel free to contribute :)
+Fonts are curently very limited. The current version only uses capitalised leters, numbers and a select few non-alphanumeric characters. In time this will grow. Feel free to contribute :)
 
 This is an example of an F. 0 = on. Array 1 is always 1 and the last element of the array is always 1. Fonts work best as 7x5.
 
