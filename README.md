@@ -56,4 +56,8 @@ Who
 
 Lewis Clayton mail@l.ew.is
 
+Licence
+==========
+
+MIT License
 
