@@ -2,7 +2,8 @@ require 'libusb'
 load 'font.rb'
 
 PATH = File.expand_path(File.dirname(__FILE__))
-BRIGHTNESS = 2
+BRIGHTNESS = 3
+SPEED = 0.03 # delay between rows being pushed to the screen
 USAGE = "Usage:
           ruby dcled_ruby.rb -m 'message here'
           ruby dcled_ruby.rb -f message.txt\n"
@@ -86,36 +87,18 @@ def to_screen(row1_new, row2_new, row3_new, row4_new, row5_new, row6_new, row7_n
   @row7 ||= Array.new(24, 1)
   @row8 ||= Array.new(24, 1)
 
-  @row1.unshift(row1_new)
-  @row1.pop
-
-  @row2.unshift(row2_new)
-  @row2.pop
-
-  @row3.unshift(row3_new)
-  @row3.pop
-
-  @row4.unshift(row4_new)
-  @row4.pop
-
-  @row5.unshift(row5_new)
-  @row5.pop
-
-  @row6.unshift(row6_new)
-  @row6.pop
-
-  @row7.unshift(row7_new)
-  @row7.pop
-
-  @row8.unshift(row8_new)
-  @row8.pop
+  8.times do |num|
+    num += 1
+    (eval "@row#{num}").unshift((eval "row#{num}_new"))
+    (eval "@row#{num}").pop
+  end
 
   format_packet(0, @row1.slice(16,8).join, @row1.slice(8,8).join, @row1.slice(0,8).join, @row2.slice(16,8).join, @row2.slice(8,8).join, @row2.slice(0,8).join)
   format_packet(2, @row3.slice(16,8).join, @row3.slice(8,8).join, @row3.slice(0,8).join, @row4.slice(16,8).join, @row4.slice(8,8).join, @row4.slice(0,8).join)
   format_packet(4, @row5.slice(16,8).join, @row5.slice(8,8).join, @row5.slice(0,8).join, @row6.slice(16,8).join, @row6.slice(8,8).join, @row6.slice(0,8).join)
   format_packet(6, @row7.slice(16,8).join, @row7.slice(8,8).join, @row7.slice(0,8).join, @row8.slice(16,8).join, @row8.slice(8,8).join, @row8.slice(0,8).join)
 
-  sleep(0.03)
+  sleep(SPEED)
 end
 
 
