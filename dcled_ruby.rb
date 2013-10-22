@@ -9,7 +9,7 @@ USAGE = "Usage:
           ruby dcled_ruby.rb -f message.txt\n"
 
 def main()
-  @font = Font.new('fonts/default.yml')
+  @font = Font.new('fonts/transpo.yml')
   rescue_this { initialise }
   option = ARGV.shift
   case option
