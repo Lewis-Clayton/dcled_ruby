@@ -29,6 +29,20 @@ class Font
     end
   end
   
+  def text_word(word)
+    chars = []
+    
+    word.split('').each { |char| chars << text(char).split($/) }
+    
+    chars.transpose.map { |e| e.join(" ") } # join letters with space
+  end
+  
+  def text_grids(word_width = 80)
+    grids_per_line = (word_width + 1) / (@width + 1)
+    
+    @grids.keys.each_slice(grids_per_line).map { |w| text_word(w.join) << $/ }
+  end
+  
   def dcled(char)
     @cache[:dcled][char] ||= if grid = @grids[char.to_sym]
       o = grid_def(grid).map { |e| (e + 1) % 2 } # flip bits
