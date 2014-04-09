@@ -1,6 +1,5 @@
 require 'yaml'
 
-
 class Font
   
   def initialize(fontfile)
@@ -16,17 +15,17 @@ class Font
     @grids = build(definition['characters'])
     
     @cache = { # to cache core output formats
-      :text  => {},
-      :dcled => {},
+      text:  {},
+      dcled: {}
     }
   end
   
   def text(char)
-    @cache[:text][char] ||= if grid = @grids[char.to_sym]
-      o = grid_def(grid).map { |e| e == 0 ? " " : "*" } # 0 -> space, 1 -> *
+    @cache[:text][char] ||= if grid == @grids[char.to_sym]
+      o = grid_def(grid).map { |e| e == 0 ? ' ' : '*' } # 0 -> space, 1 -> *
       
       o.each_slice(@width).to_a.flat_map { |e| e.join + $/ }.join
-    end
+                            end
   end
   
   def text_word(word)
@@ -34,7 +33,7 @@ class Font
     
     word.split('').each { |char| chars << text(char).split($/) }
     
-    chars.transpose.map { |e| e.join(" ") } # join letters with space
+    chars.transpose.map { |e| e.join(' ') } # join letters with space
   end
   
   def text_grids(word_width = 80)
@@ -48,7 +47,7 @@ class Font
       o = grid_def(grid).map { |e| (e + 1) % 2 } # flip bits
       
       [[1] * 8] + o.each_slice(@width).to_a.transpose.map { |e| e << 1 }
-    end
+                             end
   end
   
   def dcled_hash(char)
